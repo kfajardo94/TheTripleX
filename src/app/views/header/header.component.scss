@@ -7,21 +7,22 @@
 //div general
 .generalBusqueda {
   display: flex;
-  width: 60%;
-  margin: 0 auto;
+  width: 100%;
+  padding-top: 10px;
 }
 
 //sección logo
 .divLogo {
   margin-right: 10px;
+  margin-left: 20px;
 }
 
+//sección búsqueda
 .divBusqueda {
   display: flex;
   margin-top: 10px;
 }
 
-//sección búsqueda
 .inputBusqueda {
   width: 500px;
   height: 40px;
@@ -30,6 +31,7 @@
   border-left: 1.9px solid gray;
   border-top: 1.9px solid gray;
   border-bottom: 1.9px solid gray;
+  font-family: Verdana;
 }
 
 .inputBusqueda:focus{
@@ -47,3 +49,18 @@
   border-top: 1.9px solid gray;
   border-bottom: 1.9px solid gray;
 }
+
+.boton-busqueda:active{
+    box-shadow: inset 0px 0.5px 3px 0px black;
+}
+
+.divMensajeTitulo {
+  margin-top: 10px;
+  margin-left: 20px;
+  font-size: x-large;
+  font-weight: bold;
+  font-family: Verdana;
+  color: white;
+
+}
+

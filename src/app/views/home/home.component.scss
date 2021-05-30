@@ -1,0 +1,20 @@
+.divGeneral{
+  width: 100%;
+  height: 100vh;
+  background: #151515;
+}
+
+.list{
+  margin: 0 auto;
+  width: 90%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+}
+
+.miniaturas{
+  margin-top: 15px;
+  background: black;
+  cursor: pointer;
+}
