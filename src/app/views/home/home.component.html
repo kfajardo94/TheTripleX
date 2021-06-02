@@ -8,13 +8,8 @@
 
   </div>
 
-  <div *ngFor="let obj of arrayVideo" >
-
-    <video width=300 height=200 controls poster="{{obj.sourceImage}}" src="{{obj.sourceVideo}}">
-      <!--<source src="{{obj.sourceVideo}}" type="video/mp4">-->
-      <!--<source src="{{obj.sourceVideo}}" type="video/webm">-->
-      <!--<source src="{{obj.sourceVideo}}"  type="video/ogg">-->
-    </video>
+  <div *ngFor="let obj of arrayVideo" let >
+    <iframe [src]="(obj.sourceVideo) | safe: 'resourceUrl'" frameborder=0 width=510 height=400 scrolling=no allowfullscreen=allowfullscreen></iframe>
   </div>
 </div>
 

@@ -8,19 +8,23 @@ import { FooterComponent } from './views/footer/footer.component';
 import { HomeComponent } from './views/home/home.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {HttpClientModule} from '@angular/common/http';
+import {SafePipeModule} from 'safe-pipe';
+import { VideoComponent } from './views/video/video.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    VideoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatGridListModule,
-    HttpClientModule
+    HttpClientModule,
+    SafePipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
