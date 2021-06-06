@@ -1,16 +1,11 @@
-<app-header></app-header>
 <div class="divGeneral">
 
 <div class="row list" >
   <div *ngFor="let obj of array">
-    <img src="{{obj.source}}" width="300" height="200" class="miniaturas">
-    
-
+    <img src="{{obj.srcImagen}}" width="300" height="200" class="miniaturas" (click)="verVideo(obj.id)">
+    <span>{{obj.descripcion}}</span>
   </div>
 
-  <div *ngFor="let obj of arrayVideo" let >
-    <iframe [src]="(obj.sourceVideo) | safe: 'resourceUrl'" frameborder=0 width=510 height=400 scrolling=no allowfullscreen=allowfullscreen></iframe>
-  </div>
 </div>
 
 
