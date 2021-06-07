@@ -3,8 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",
-    "install": "npm install",
+    "start": "node server.js && npm install",
     "build": "ng build --output-path=dist/the-triple-x --aot --configuration=production",
     "test": "ng test",
     "lint": "ng lint",
