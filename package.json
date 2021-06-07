@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
-    "preinstall": "npm install",
+    "install": "npm install",
     "build": "ng build --output-path=dist/the-triple-x --aot --configuration=production",
     "test": "ng test",
     "lint": "ng lint",
