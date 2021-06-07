@@ -2,10 +2,10 @@
   "name": "the-triple-x",
   "version": "0.0.0",
   "scripts": {
-    "start:production": "npm install && npm run build",
     "ng": "ng",
     "start": "node server.js",
-    "build": "npm install ng build --output-path=dist/the-triple-x --aot --configuration=production",
+    "preinstall": "npm install",
+    "build": "ng build --output-path=dist/the-triple-x --aot --configuration=production",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
