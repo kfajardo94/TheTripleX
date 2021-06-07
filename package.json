@@ -2,7 +2,6 @@
   "name": "the-triple-x",
   "version": "0.0.0",
   "scripts": {
-    "client-install": "npm install",
     "ng": "ng",
     "start": "node server.js",
     "test": "ng test",
