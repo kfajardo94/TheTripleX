@@ -9,9 +9,11 @@ import {Router} from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   title: string;
+  url: string;
 
   constructor(private router: Router) {
     this.title = '';
+    this.url = this.router.url;
   }
 
   ngOnInit(): void {
@@ -25,4 +27,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['']);
   }
 
+  viajarOpciones(opcion: string): void {
+    this.router.navigate([this.url + opcion]);
+  }
 }

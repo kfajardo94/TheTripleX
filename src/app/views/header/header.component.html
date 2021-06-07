@@ -11,6 +11,22 @@
       </button>
     </div>
     <div class="divMensajeTitulo">
-      <p>TODO EL PORNO QUE QUIERAS</p></div>
+      <p>TODO EL PORNO QUE QUIERAS</p>
+    </div>
+
+  </div>
+  <div class="row divOpciones">
+    <div class="col">
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-dark" id="dropdownBasic1" ngbDropdownToggle>
+          <i class="fa fa-list"></i>
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem (click)="viajarOpciones('categorias')">Categorías</button>
+          <button ngbDropdownItem (click)="viajarOpciones('agregarVideos')">Videos</button>
+        </div>
+
+      </div>
+    </div>
   </div>
 </div>

@@ -1,0 +1,21 @@
+<div class="divGeneral">
+  <div class="divTable">
+    <div class="divTitulo">
+      <span>Categorías</span>
+    </div>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let categoria of categorias; let i = index;" [class.tdPar]="(i+1) % 2 !== 0" [class.tdImpar]="(i+1) % 2 === 0">
+        <td>{{categoria.id}}</td>
+        <td>{{categoria.nombre}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
