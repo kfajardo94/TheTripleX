@@ -12,6 +12,7 @@ import {SafePipeModule} from 'safe-pipe';
 import {VideoComponent} from './views/video/video.component';
 import {CategoriasComponent} from './views/categorias/categorias.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatGridListModule,
     HttpClientModule,
     SafePipeModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

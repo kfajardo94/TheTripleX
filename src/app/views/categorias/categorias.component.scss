@@ -11,6 +11,16 @@
   padding-top: 50px;
 }
 
+.divTableCustom{
+  height: 300px;
+  overflow: auto;
+}
+
+.divTableCustom table thead{
+  position: sticky;
+  top: 0;
+}
+
 .divTable table th{
   background: black;
   color: white;
@@ -26,6 +36,19 @@
   font-family: Verdana;
   font-weight: bold;
   font-size: x-large;
+  display: flex;
+}
+
+.botonAgregarGeneral{
+  margin-left: 300px;
+  font-size: x-large;
+  color: white;
+  border: none;
+  background: none;
+}
+
+.botonAgregarGeneral:hover{
+  color: silver;
 }
 
 .tdPar{
