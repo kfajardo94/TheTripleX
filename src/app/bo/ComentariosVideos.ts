@@ -1,12 +1,12 @@
 export class ComentariosVideos{
   id: number;
-  description: string;
+  descripcion: string;
   videoId: number;
   nombreUsuario: string;
 
-  constructor(id: number, description: string, videoId: number, nombreUsuario: string) {
+  constructor(id: number, descripcion: string, videoId: number, nombreUsuario: string) {
     this.id = id;
-    this.description = description;
+    this.descripcion = descripcion;
     this.videoId = videoId;
     this.nombreUsuario = nombreUsuario;
   }
