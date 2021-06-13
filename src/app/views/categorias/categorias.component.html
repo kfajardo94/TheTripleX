@@ -2,29 +2,76 @@
   <div class="divTable">
     <div class="divTitulo">
       <span>Categorías</span>
-      <button class="botonAgregarGeneral" (click)="crear(content)"><i class="fas fa-plus-circle"></i></button>
     </div>
-    <div class="divTableCustom">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th scope="col">Id</th>
-          <th scope="col">Nombre</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let categoria of categorias; let i = index;" [class.tdPar]="(i+1) % 2 !== 0" [class.tdImpar]="(i+1) % 2 === 0">
-          <td>{{categoria.id}}</td>
-          <td>{{categoria.nombre}}</td>
-        </tr>
-        </tbody>
-      </table>
+    <p>
+      <button type="button" class="btn btn-dark" (click)="collapse.toggle()" [attr.aria-expanded]="!this.filtroCerrado"
+              aria-controls="collapseExample">
+        Filtros
+      </button>
+    </p>
+    <div #collapse="ngbCollapse" [(ngbCollapse)]="this.filtroCerrado">
+      <div class="card">
+        <div class="card-body">
+          You can collapse this card by clicking Toggle
+        </div>
+      </div>
+    </div>
+    <div>
+      <button class="btn botonAgregarGeneral" (click)="modal(content, 1, null)"><i class="fas fa-file"></i></button>
+      <div class="divTableCustom">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Acciones</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let categoria of categorias; let i = index;" [class.tdPar]="(i+1) % 2 !== 0" [class.tdImpar]="(i+1) % 2 === 0">
+            <td>{{categoria.id}}</td>
+            <td><span>{{categoria.nombre}}</span></td>
+            <td>
+              <button (click)="modal(content, 3, categoria)"><i class="fas fa-search"></i></button>
+              <button (click)="modal(content, 2, categoria)"><i class="fas fa-pen"></i></button>
+              <button (click)="modalEliminar(contentEliminar, categoria)"><i class="fas fa-trash"></i></button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="divPagination1" *ngIf="pagination.collectionSize > 0">
+      <div class="divPagination2">
+        <ngb-pagination class="ngbPaginationClass"
+          [(page)]="pagination.page"
+          (pageChange)="changePage($event-1)"
+          [maxSize]="pagination.maxSize"
+          [pageSize]="pagination.pageSize"
+          [collectionSize]="pagination.collectionSize"></ngb-pagination>
+      </div>
+    </div>
+    <div class="divPagination3">
+      <div class="divPagination4">
+        <span>Registros por página: {{pagination.pageSize}}</span>
+        <div ngbDropdown placement="top-left" class="d-inline-block">
+          <button class="btn btn-dark" id="dropdownBasic1" ngbDropdownToggle>
+          </button>
+          <div ngbDropdownMenu class="bg-dark divPageSize" aria-labelledby="dropdownBasic1">
+            <button ngbDropdownItem class="text-white text-center" (click)="changeSize(10)">10</button>
+            <button ngbDropdownItem class="text-white text-center" (click)="changeSize(20)">20</button>
+          </div>
+        </div>
+        <span>Total de Registros: {{pagination.collectionSize}}</span>
+      </div>
     </div>
   </div>
+
 </div>
 
 <ng-template #content let-modal>
-  <div class="modal-header">
+  <div class="modal-header badge-dark">
     <h4 class="modal-title" id="modal-basic-title">Agregar Categoría</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
       <span aria-hidden="true">&times;</span>
@@ -37,18 +84,41 @@
         <div *ngIf="this.modo !== 1">
           <label>Id</label>
           <div class="input-group" >
-            <input type="text" class="form-control" maxlength="10" formControlName="id" disabled>
+            <input type="text" class="form-control" maxlength="10" formControlName="id" >
           </div>
         </div>
-        <label>Nombre Etiqueta*</label>
+        <label>Nombre*</label>
         <div class="input-group" >
           <input type="text" class="form-control" maxlength="50" formControlName="nombre" (blur)="limpiarControls('nombre')">
         </div>
       </div>
     </div>
-    <div class="modal-footer">
-      <button type="submit" class="btn btn-dark" [disabled]="this.form.invalid || deshabilitarBotones">Guardar</button>
-      <button type="button" (click)="modal.close()" class="btn btn-danger" [disabled]="deshabilitarBotones">Cerrar</button>
+    <div class="modal-footer divFooter">
+      <button type="submit" class="btn btn-success" [disabled]="this.form.invalid || deshabilitarBotones" *ngIf="modo !== 3 && modo !== 4"><i class="fas fa-check"></i></button>
+      <button type="button" (click)="modal.close()" class="btn btn-danger" [disabled]="deshabilitarBotones"><i class="fas fa-times"></i></button>
+    </div>
+  </form>
+
+</ng-template>
+
+
+<ng-template #contentEliminar let-modal>
+  <div class="modal-header badge-dark">
+    <h4 class="modal-title" id="modal-basic-title-delete">Eliminar Categoría</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <ngb-alert type="{{type}}" *ngIf="mostrarMensaje" [dismissible]="false">{{mensaje}}</ngb-alert>
+  <form [formGroup]="form" (submit)="eliminar()">
+    <div class="modal-body">
+      <div class="form-group divMensajeEliminar">
+        <span>¿Desea eliminar el registro {{this.form.controls.id.value}} - {{this.form.controls.nombre.value}}</span>
+      </div>
+    </div>
+    <div class="modal-footer divFooter">
+      <button type="submit" class="btn btn-success" [disabled]="deshabilitarBotones"><i class="fas fa-check"></i></button>
+      <button type="button" (click)="modal.close()" class="btn btn-danger" [disabled]="deshabilitarBotones"><i class="fas fa-times"></i></button>
     </div>
   </form>
 

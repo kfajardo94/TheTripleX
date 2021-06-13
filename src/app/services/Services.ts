@@ -25,6 +25,17 @@ export class Services {
     return this.http.get(this.URL + '/' + entity + '/' + 'getAll', {headers});
   }
 
+  getFromEntityByPage(entity: string, obj: any): Observable<any> {
+
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Headers' : 'Content-Type',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': '*'
+    });
+
+    return this.http.post(this.URL + '/' + entity + '/' + 'getByPage', obj, {headers});
+  }
+
 
   getItemsFromEntityByFields(entity: string, method: string, fields: UrlField[]): Observable<any> {
 
@@ -59,7 +70,24 @@ export class Services {
     return this.http.post(this.URL + '/' + entity, body, {headers});
   }
 
+  editEntity(entity: string, body: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Headers' : 'Content-Type',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': '*'
+    });
 
+    return this.http.put(this.URL + '/' + entity, body, {headers});
+  }
 
+  deleteEntity(entity: string, id: number): Observable<any>{
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Headers' : 'Content-Type',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': '*'
+    });
+
+    return this.http.delete(this.URL + '/' + entity + '?id=' + id,  {headers});
+  }
 
 }
