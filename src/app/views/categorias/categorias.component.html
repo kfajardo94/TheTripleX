@@ -10,10 +10,29 @@
       </button>
     </p>
     <div #collapse="ngbCollapse" [(ngbCollapse)]="this.filtroCerrado">
-      <div class="card">
-        <div class="card-body">
-          You can collapse this card by clicking Toggle
-        </div>
+      <div class="text-white">
+        <form [formGroup]="formFiltros" (submit)="filtrar(collapse)">
+          <div class="modal-body">
+            <div class="form-group col-sm-6" style="margin: 0 auto;">
+              <label>Id</label>
+              <div class="input-group" >
+                <input type="text" class="form-control" maxlength="10" size="10" width="100" formControlName="id" >
+              </div>
+              <label>Nombre</label>
+              <div class="input-group" >
+                <input type="text" class="form-control" maxlength="50" formControlName="nombre">
+              </div>
+            </div>
+          </div>
+          <div class="divFooter">
+            <div style="float: right; right: 50%; position: relative;">
+              <div style="float: right; right: -50%; position: relative;">
+                <button type="submit" class="btn btn-light" ><i class="fas fa-search"></i></button>
+                <button type="button" (click)="limpiarFiltros()" class="btn btn-danger" ><i class="fas fa-times"></i></button>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
     <div>

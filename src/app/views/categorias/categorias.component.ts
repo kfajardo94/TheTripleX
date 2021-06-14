@@ -13,6 +13,8 @@ export class CategoriasComponent implements OnInit {
 
   categorias: Categorias[];
   form = new FormGroup({});
+  formFiltros = new FormGroup({});
+  formFiltrosBK = new FormGroup({});
   type: string;
   mensaje: string;
   modo: number;
@@ -37,6 +39,17 @@ export class CategoriasComponent implements OnInit {
       id: new FormControl(''),
       nombre: new FormControl('', Validators.required)
     });
+
+    this.formFiltros = new FormGroup({
+      id: new FormControl(''),
+      nombre: new FormControl('', Validators.required)
+    });
+
+    this.formFiltrosBK = new FormGroup({
+      id: new FormControl(''),
+      nombre: new FormControl('', Validators.required)
+    });
+
     this.filtroCerrado = true;
   }
 
@@ -92,7 +105,8 @@ export class CategoriasComponent implements OnInit {
             this.modalService.dismissAll();
             this.mostrarMensaje = false;
           } , 1000);
-          this.getValuesByPage('', '', 0, this.pagination.pageSize);
+          this.getValuesByPage(this.formFiltrosBK.controls.id.value.toString().trim(),
+            this.formFiltrosBK.controls.nombre.value.toString().trim(), 0, this.pagination.pageSize);
         }, error1 => {
           this.type = 'danger';
           this.mensaje = 'Ha ocurrido un error al insertar los datos';
@@ -115,7 +129,8 @@ export class CategoriasComponent implements OnInit {
             this.modalService.dismissAll();
             this.mostrarMensaje = false;
           } , 1000);
-          this.getValuesByPage('', '', 0, this.pagination.pageSize);
+          this.getValuesByPage(this.formFiltrosBK.controls.id.value.toString().trim(),
+            this.formFiltrosBK.controls.nombre.value.toString().trim(), 0, this.pagination.pageSize);
         }, error1 => {
           this.type = 'danger';
           this.mensaje = 'Ha ocurrido un error al actualizar los datos';
@@ -139,7 +154,8 @@ export class CategoriasComponent implements OnInit {
         this.modalService.dismissAll();
         this.mostrarMensaje = false;
       } , 1000);
-      this.getValuesByPage('', '', 0, this.pagination.pageSize);
+      this.getValuesByPage(this.formFiltrosBK.controls.id.value.toString().trim(),
+        this.formFiltrosBK.controls.nombre.value.toString().trim(), 0, this.pagination.pageSize);
     }, error => {
       this.type = 'danger';
       this.mensaje = 'Ha ocurrido un error al eliminar el registro';
@@ -183,12 +199,30 @@ export class CategoriasComponent implements OnInit {
 
   changePage(event: any): void {
     this.pagination.page = event;
-    this.getValuesByPage('', '', this.pagination.page, this.pagination.pageSize);
+    this.getValuesByPage(this.formFiltrosBK.controls.id.value.toString().trim(),
+      this.formFiltrosBK.controls.nombre.value.toString().trim(), this.pagination.page, this.pagination.pageSize);
   }
 
   changeSize(size: any): void {
     this.pagination.pageSize = size;
-    this.getValuesByPage(null, '', 0, this.pagination.pageSize);
+    this.getValuesByPage(this.formFiltrosBK.controls.id.value.toString().trim(),
+      this.formFiltrosBK.controls.nombre.value.toString().trim(), 0, this.pagination.pageSize);
   }
 
+  limpiarFiltros(): void {
+    this.formFiltros = new FormGroup({
+      id: new FormControl(''),
+      nombre: new FormControl('', Validators.required)
+    });
+  }
+
+  filtrar(collapse: any): void {
+    collapse.toggle();
+    this.formFiltrosBK = new FormGroup({
+      id: new FormControl({value: this.formFiltros.controls.id.value.toString().trim(), disabled: true}),
+      nombre: new FormControl({value: this.formFiltros.controls.nombre.value.toString().trim(), disabled: true})
+    });
+    this.getValuesByPage(this.formFiltros.controls.id.value.toString().trim(),
+      this.formFiltros.controls.nombre.value.toString().trim(), 0, this.pagination.pageSize);
+  }
 }
