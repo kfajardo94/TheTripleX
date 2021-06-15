@@ -22,12 +22,14 @@ export class CategoriasComponent implements OnInit {
   mostrarMensaje = false;
   pagination: NgbPagination;
   filtroCerrado: boolean;
+  nombreAccion: string;
 
   constructor(private modalService: NgbModal,
               private service: Services) {
     this.categorias = [];
     this.type = '';
     this.mensaje = '';
+    this.nombreAccion = '';
     this.modo = 0;
     this.deshabilitarBotones = false;
     this.mostrarMensaje = false;
@@ -66,16 +68,19 @@ export class CategoriasComponent implements OnInit {
     );
 
     if (this.modo === 1) {
+      this.nombreAccion = 'agregar';
       this.form = new FormGroup({
         id: new FormControl(''),
         nombre: new FormControl('', Validators.required)
       });
     } else if (this.modo === 2) {
+      this.nombreAccion = 'editar';
       this.form = new FormGroup({
         id: new FormControl({value: item.id, disabled: true}),
         nombre: new FormControl(item.nombre, Validators.required)
       });
     } else if (this.modo === 3) {
+      this.nombreAccion = 'ver';
       this.form = new FormGroup({
         id: new FormControl({value: item.id, disabled: true}),
         nombre: new FormControl({value: item.nombre, disabled: true})

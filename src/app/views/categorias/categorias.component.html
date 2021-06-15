@@ -1,12 +1,12 @@
 <div class="divGeneral">
   <div class="divTable">
     <div class="divTitulo">
-      <span>Categorías</span>
+      <span>{{'titulo.categorias' | translate}}</span>
     </div>
     <p>
       <button type="button" class="btn btn-dark" (click)="collapse.toggle()" [attr.aria-expanded]="!this.filtroCerrado"
               aria-controls="collapseExample">
-        Filtros
+        {{'filtros' | translate}}
       </button>
     </p>
     <div #collapse="ngbCollapse" [(ngbCollapse)]="this.filtroCerrado">
@@ -14,11 +14,11 @@
         <form [formGroup]="formFiltros" (submit)="filtrar(collapse)">
           <div class="modal-body">
             <div class="form-group col-sm-6" style="margin: 0 auto;">
-              <label>Id</label>
+              <label>{{'id' | translate}}</label>
               <div class="input-group" >
                 <input type="text" class="form-control" maxlength="10" size="10" width="100" formControlName="id" >
               </div>
-              <label>Nombre</label>
+              <label>{{'categorias.nombre' | translate}}</label>
               <div class="input-group" >
                 <input type="text" class="form-control" maxlength="50" formControlName="nombre">
               </div>
@@ -41,9 +41,9 @@
         <table class="table table-striped">
           <thead>
           <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Acciones</th>
+            <th scope="col">{{'id' | translate}}</th>
+            <th scope="col">{{'categorias.nombre' | translate}}</th>
+            <th scope="col">{{'acciones' | translate}}</th>
           </tr>
           </thead>
           <tbody>
@@ -91,7 +91,7 @@
 
 <ng-template #content let-modal>
   <div class="modal-header badge-dark">
-    <h4 class="modal-title" id="modal-basic-title">Agregar Categoría</h4>
+    <h4 class="modal-title" id="modal-basic-title">{{nombreAccion | translate}} {{'titulo.categorias.crud' | translate}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -101,12 +101,12 @@
     <div class="modal-body">
       <div class="form-group">
         <div *ngIf="this.modo !== 1">
-          <label>Id</label>
+          <label>{{'id' | translate}}</label>
           <div class="input-group" >
             <input type="text" class="form-control" maxlength="10" formControlName="id" >
           </div>
         </div>
-        <label>Nombre*</label>
+        <label>{{(this.modo === 1 || modo === 2) ? ('categorias.nombre' | translate) + '*' : 'categorias.nombre' | translate}}</label>
         <div class="input-group" >
           <input type="text" class="form-control" maxlength="50" formControlName="nombre" (blur)="limpiarControls('nombre')">
         </div>
@@ -123,7 +123,7 @@
 
 <ng-template #contentEliminar let-modal>
   <div class="modal-header badge-dark">
-    <h4 class="modal-title" id="modal-basic-title-delete">Eliminar Categoría</h4>
+    <h4 class="modal-title" id="modal-basic-title-delete">{{'eliminar' | translate}} {{'titulo.categorias.crud' | translate}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
       <span aria-hidden="true">&times;</span>
     </button>

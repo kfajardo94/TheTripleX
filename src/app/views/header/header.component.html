@@ -5,25 +5,25 @@
       <input type="image" src="../../../assets/img/logo.png" class="logo" (click)="home()">
     </div>
     <div id="busqueda" class="divBusqueda">
-      <input class="inputBusqueda form-control" placeholder="Buscar...">
+      <input class="inputBusqueda form-control" placeholder="{{'buscar' | translate}}">
       <button class="boton-busqueda">
         <i class="fa fa-search"></i>
       </button>
     </div>
     <div class="divMensajeTitulo">
-      <p>TODO EL PORNO QUE QUIERAS</p>
+      <p>{{'frase.encabezado' | translate}}</p>
     </div>
 
   </div>
-  <div class="row divOpciones">
+  <div class=" divOpciones">
     <div class="col">
       <div ngbDropdown class="d-inline-block">
         <button class="btn btn-dark" id="dropdownBasic1" ngbDropdownToggle>
           <i class="fa fa-list"></i>
         </button>
-        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <button ngbDropdownItem (click)="viajarOpciones('categorias')">Categorías</button>
-          <button ngbDropdownItem (click)="viajarOpciones('agregarVideos')">Videos</button>
+        <div ngbDropdownMenu class="bg-dark divMenu" aria-labelledby="dropdownBasic1" >
+          <button ngbDropdownItem (click)="viajarOpciones('categorias')" class="text-white">{{'titulo.categorias' | translate}}</button>
+          <button ngbDropdownItem (click)="viajarOpciones('agregarVideos')" class="text-white">{{'titulo.videos' | translate}}</button>
         </div>
 
       </div>
