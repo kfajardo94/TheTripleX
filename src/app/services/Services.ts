@@ -8,7 +8,8 @@ import {Observable} from 'rxjs';
 })
 export class Services {
 
-  URL = 'http://thetriplex-backend.herokuapp.com';
+  // URL = 'http://localhost:8080';
+  URL = 'https://thetriplex-backend.herokuapp.com';
 
   constructor(private http: HttpClient) {
 
