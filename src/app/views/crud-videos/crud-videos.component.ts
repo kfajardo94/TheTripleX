@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import {Categorias} from '../../bo/Categorias';
+import {Videos} from '../../bo/Videos';
 import {NgbModal, NgbPagination, NgbPaginationConfig} from '@ng-bootstrap/ng-bootstrap';
 import {FormControl, FormGroup, Validators, ReactiveFormsModule} from '@angular/forms';
 import {Services} from '../../services/Services';
 
 @Component({
-  selector: 'app-categorias',
-  templateUrl: './categorias.component.html',
-  styleUrls: ['./categorias.component.scss']
+  selector: 'app-crud-videos',
+  templateUrl: './crud-videos.component.html',
+  styleUrls: ['./crud-videos.component.scss']
 })
-export class CategoriasComponent implements OnInit {
+export class CrudVideosComponent implements OnInit {
 
-  categorias: Categorias[];
+  videos: Videos[];
   form = new FormGroup({});
   formFiltros = new FormGroup({});
   formFiltrosBK = new FormGroup({});
@@ -26,7 +26,7 @@ export class CategoriasComponent implements OnInit {
 
   constructor(private modalService: NgbModal,
               private service: Services) {
-    this.categorias = [];
+    this.videos = [];
     this.type = '';
     this.mensaje = '';
     this.nombreAccion = '';
@@ -39,17 +39,20 @@ export class CategoriasComponent implements OnInit {
     this.pagination.maxSize = 10;
     this.form = new FormGroup({
       id: new FormControl(''),
-      nombre: new FormControl('', Validators.required)
+      descripcion: new FormControl('', Validators.required),
+      srcImagen: new FormControl('', Validators.required),
+      srcVideo: new FormControl('', Validators.required),
+      fechaCreacion: new FormControl(''),
     });
 
     this.formFiltros = new FormGroup({
       id: new FormControl(''),
-      nombre: new FormControl('', Validators.required)
+      descripcion: new FormControl('', Validators.required)
     });
 
     this.formFiltrosBK = new FormGroup({
       id: new FormControl(''),
-      nombre: new FormControl('', Validators.required)
+      descripcion: new FormControl('', Validators.required)
     });
 
     this.filtroCerrado = true;
@@ -71,19 +74,28 @@ export class CategoriasComponent implements OnInit {
       this.nombreAccion = 'agregar';
       this.form = new FormGroup({
         id: new FormControl(''),
-        nombre: new FormControl('', Validators.required)
+        descripcion: new FormControl('', Validators.required),
+        srcImagen: new FormControl('', Validators.required),
+        srcVideo: new FormControl('', Validators.required),
+        fechaCreacion: new FormControl(new Date()),
       });
     } else if (this.modo === 2) {
       this.nombreAccion = 'editar';
       this.form = new FormGroup({
         id: new FormControl({value: item.id, disabled: true}),
-        nombre: new FormControl(item.nombre, Validators.required)
+        descripcion: new FormControl(item.descripcion, Validators.required),
+        srcImagen: new FormControl(item.srcImagen, Validators.required),
+        srcVideo: new FormControl(item.srcVideo, Validators.required),
+        fechaCreacion: new FormControl({value: item.fechaCreacion, disabled: true})
       });
     } else if (this.modo === 3) {
       this.nombreAccion = 'ver';
       this.form = new FormGroup({
         id: new FormControl({value: item.id, disabled: true}),
-        nombre: new FormControl({value: item.nombre, disabled: true})
+        descripcion: new FormControl({value: item.descripcion, disabled: true}),
+        srcImagen: new FormControl({value: item.srcImagen, disabled: true}),
+        srcVideo: new FormControl({value: item.srcVideo, disabled: true}),
+        fechaCreacion: new FormControl({value: item.fechaCreacion, disabled: true})
       });
     }
   }
@@ -93,7 +105,7 @@ export class CategoriasComponent implements OnInit {
     this.deshabilitarBotones = false;
     this.form = new FormGroup({
       id: new FormControl({value: item.id, disabled: true}),
-      nombre: new FormControl({value: item.nombre, disabled: true})
+      descripcion: new FormControl({value: item.descripcion, disabled: true})
     });
   }
 
@@ -101,7 +113,7 @@ export class CategoriasComponent implements OnInit {
     if (this.modo === 1){
       if (this.form && this.form.valid){
         const obj = this.llenarObjeto(this.form);
-        this.service.saveEntity('categoria', obj).subscribe( res => {
+        this.service.saveEntity('video', obj).subscribe( res => {
           this.type = 'success';
           this.mensaje = 'Registro creado';
           this.deshabilitarBotones = true;
@@ -111,7 +123,7 @@ export class CategoriasComponent implements OnInit {
             this.mostrarMensaje = false;
           } , 1000);
           this.getValuesByPage(this.formFiltrosBK.controls.id.value.toString().trim(),
-            this.formFiltrosBK.controls.nombre.value.toString().trim(), 0, this.pagination.pageSize);
+            this.formFiltrosBK.controls.descripcion.value.toString().trim(), 0, this.pagination.pageSize);
         }, error1 => {
           this.type = 'danger';
           this.mensaje = 'Ha ocurrido un error al insertar los datos';
@@ -125,7 +137,7 @@ export class CategoriasComponent implements OnInit {
     } else if (this.modo === 2){
       if (this.form && this.form.valid){
         const obj = this.llenarObjeto(this.form);
-        this.service.editEntity('categoria', obj).subscribe( res => {
+        this.service.editEntity('video', obj).subscribe( res => {
           this.type = 'success';
           this.mensaje = 'Registro modificado';
           this.deshabilitarBotones = true;
@@ -135,7 +147,7 @@ export class CategoriasComponent implements OnInit {
             this.mostrarMensaje = false;
           } , 1000);
           this.getValuesByPage(this.formFiltrosBK.controls.id.value.toString().trim(),
-            this.formFiltrosBK.controls.nombre.value.toString().trim(), 0, this.pagination.pageSize);
+            this.formFiltrosBK.controls.descripcion.value.toString().trim(), 0, this.pagination.pageSize);
         }, error1 => {
           this.type = 'danger';
           this.mensaje = 'Ha ocurrido un error al actualizar los datos';
@@ -150,7 +162,7 @@ export class CategoriasComponent implements OnInit {
   }
 
   eliminar(): void {
-    this.service.deleteEntity('categoria', this.form.controls.id.value).subscribe(res => {
+    this.service.deleteEntity('video', this.form.controls.id.value).subscribe(res => {
       this.type = 'success';
       this.mensaje = 'Registro eliminado';
       this.deshabilitarBotones = true;
@@ -160,7 +172,7 @@ export class CategoriasComponent implements OnInit {
         this.mostrarMensaje = false;
       } , 1000);
       this.getValuesByPage(this.formFiltrosBK.controls.id.value.toString().trim(),
-        this.formFiltrosBK.controls.nombre.value.toString().trim(), 0, this.pagination.pageSize);
+        this.formFiltrosBK.controls.descripcion.value.toString().trim(), 0, this.pagination.pageSize);
     }, error => {
       this.type = 'danger';
       this.mensaje = 'Ha ocurrido un error al eliminar el registro';
@@ -175,7 +187,10 @@ export class CategoriasComponent implements OnInit {
   llenarObjeto(form: any): any{
     const obj = {
       id: form.controls.id.value.toString().trim(),
-      nombre: form.controls.nombre.value.trim()
+      descripcion: form.controls.descripcion.value.trim(),
+      srcImagen: form.controls.srcImagen.value.trim(),
+      srcVideo: form.controls.srcVideo.value.trim(),
+      fechaCreacion: form.controls.fechaCreacion.value,
     };
 
     return obj;
@@ -185,16 +200,16 @@ export class CategoriasComponent implements OnInit {
     this.form.controls[campo].setValue(this.form.controls[campo].value.trim());
   }
 
-  getValuesByPage(idValue: any, nombreValue: string, pageValue: any, sizeValue: any): void{
+  getValuesByPage(idValue: any, descripcionValue: string, pageValue: any, sizeValue: any): void{
     this.pagination.page = pageValue + 1;
     const obj = {
-      categoria: {id: idValue, nombre: nombreValue},
+      video: {id: idValue, descripcion: descripcionValue},
       page: pageValue,
       size: sizeValue
     };
 
-    this.service.getFromEntityByPage('categoria', obj).subscribe( res => {
-      this.categorias = res.content;
+    this.service.getFromEntityByPage('video', obj).subscribe( res => {
+      this.videos = res.content;
       this.pagination.collectionSize = res  .totalElements;
     }, error1 => {
       console.error('Error al consumir Get All');
@@ -204,19 +219,19 @@ export class CategoriasComponent implements OnInit {
   changePage(event: any): void {
     this.pagination.page = event;
     this.getValuesByPage(this.formFiltrosBK.controls.id.value.toString().trim(),
-      this.formFiltrosBK.controls.nombre.value.toString().trim(), this.pagination.page, this.pagination.pageSize);
+      this.formFiltrosBK.controls.descripcion.value.toString().trim(), this.pagination.page, this.pagination.pageSize);
   }
 
   changeSize(size: any): void {
     this.pagination.pageSize = size;
     this.getValuesByPage(this.formFiltrosBK.controls.id.value.toString().trim(),
-      this.formFiltrosBK.controls.nombre.value.toString().trim(), 0, this.pagination.pageSize);
+      this.formFiltrosBK.controls.descripcion.value.toString().trim(), 0, this.pagination.pageSize);
   }
 
   limpiarFiltros(): void {
     this.formFiltros = new FormGroup({
       id: new FormControl(''),
-      nombre: new FormControl('', Validators.required)
+      descripcion: new FormControl('', Validators.required)
     });
   }
 
@@ -224,9 +239,9 @@ export class CategoriasComponent implements OnInit {
     collapse.toggle();
     this.formFiltrosBK = new FormGroup({
       id: new FormControl({value: this.formFiltros.controls.id.value.toString().trim(), disabled: true}),
-      nombre: new FormControl({value: this.formFiltros.controls.nombre.value.toString().trim(), disabled: true})
+      descripcion: new FormControl({value: this.formFiltros.controls.descripcion.value.toString().trim(), disabled: true})
     });
     this.getValuesByPage(this.formFiltros.controls.id.value.toString().trim(),
-      this.formFiltros.controls.nombre.value.toString().trim(), 0, this.pagination.pageSize);
+      this.formFiltros.controls.descripcion.value.toString().trim(), 0, this.pagination.pageSize);
   }
 }

@@ -1,7 +1,7 @@
 <div class="divGeneral">
   <div class="divTable">
     <div class="divTitulo">
-      <span>{{'titulo.categorias' | translate}}</span>
+      <span>{{'titulo.videos' | translate}}</span>
     </div>
     <p>
       <button type="button" class="btn btn-dark" (click)="collapse.toggle()" [attr.aria-expanded]="!this.filtroCerrado"
@@ -18,9 +18,9 @@
               <div class="input-group" >
                 <input type="text" class="form-control" maxlength="10" size="10" width="100" formControlName="id" >
               </div>
-              <label>{{'categorias.nombre' | translate}}</label>
+              <label>{{'videos.descripcion' | translate}}</label>
               <div class="input-group" >
-                <input type="text" class="form-control" maxlength="50" formControlName="nombre">
+                <input type="text" class="form-control" maxlength="50" formControlName="descripcion">
               </div>
             </div>
           </div>
@@ -42,18 +42,18 @@
           <thead>
           <tr>
             <th scope="col">{{'id' | translate}}</th>
-            <th scope="col">{{'categorias.nombre' | translate}}</th>
+            <th scope="col">{{'videos.descripcion' | translate}}</th>
             <th scope="col">{{'acciones' | translate}}</th>
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let categoria of categorias; let i = index;" [class.tdPar]="(i+1) % 2 !== 0" [class.tdImpar]="(i+1) % 2 === 0">
-            <td>{{categoria.id}}</td>
-            <td><span>{{categoria.nombre}}</span></td>
+          <tr *ngFor="let video of videos; let i = index;" [class.tdPar]="(i+1) % 2 !== 0" [class.tdImpar]="(i+1) % 2 === 0">
+            <td>{{video.id}}</td>
+            <td><span>{{video.descripcion}}</span></td>
             <td>
-              <button (click)="modal(content, 3, categoria)"><i class="fas fa-search"></i></button>
-              <button (click)="modal(content, 2, categoria)"><i class="fas fa-pen"></i></button>
-              <button (click)="modalEliminar(contentEliminar, categoria)"><i class="fas fa-trash"></i></button>
+              <button (click)="modal(content, 3, video)"><i class="fas fa-search"></i></button>
+              <button (click)="modal(content, 2, video)"><i class="fas fa-pen"></i></button>
+              <button (click)="modalEliminar(contentEliminar, video)"><i class="fas fa-trash"></i></button>
             </td>
           </tr>
           </tbody>
@@ -64,11 +64,11 @@
     <div class="divPagination1" *ngIf="pagination.collectionSize > 0">
       <div class="divPagination2">
         <ngb-pagination class="ngbPaginationClass"
-          [(page)]="pagination.page"
-          (pageChange)="changePage($event-1)"
-          [maxSize]="pagination.maxSize"
-          [pageSize]="pagination.pageSize"
-          [collectionSize]="pagination.collectionSize"></ngb-pagination>
+                        [(page)]="pagination.page"
+                        (pageChange)="changePage($event-1)"
+                        [maxSize]="pagination.maxSize"
+                        [pageSize]="pagination.pageSize"
+                        [collectionSize]="pagination.collectionSize"></ngb-pagination>
       </div>
     </div>
     <div class="divPagination3">
@@ -94,7 +94,7 @@
 
 <ng-template #content let-modal>
   <div class="modal-header badge-dark">
-    <h4 class="modal-title" id="modal-basic-title">{{nombreAccion | translate}} {{'titulo.categorias.crud' | translate}}</h4>
+    <h4 class="modal-title" id="modal-basic-title">{{nombreAccion | translate}} {{'titulo.videos.crud' | translate}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -109,9 +109,27 @@
             <input type="text" class="form-control" maxlength="10" formControlName="id" >
           </div>
         </div>
-        <label>{{(this.modo === 1 || modo === 2) ? ('categorias.nombre' | translate) + '*' : 'categorias.nombre' | translate}}</label>
+
+        <label>{{(this.modo === 1 || modo === 2) ? ('videos.descripcion' | translate) + '*' : 'videos.descripcion' | translate}}</label>
         <div class="input-group" >
-          <input type="text" class="form-control" maxlength="50" formControlName="nombre" (blur)="limpiarControls('nombre')">
+          <textarea rows="4" type="text" class="form-control" maxlength="200" formControlName="descripcion" (blur)="limpiarControls('descripcion')"></textarea>
+        </div>
+
+        <label>{{(this.modo === 1 || modo === 2) ? ('videos.src.imagen' | translate) + '*' : 'videos.src.imagen' | translate}}</label>
+        <div class="input-group" >
+          <textarea rows="4" type="text" class="form-control" maxlength="200" formControlName="srcImagen" (blur)="limpiarControls('srcImagen')"></textarea>
+        </div>
+
+        <label>{{(this.modo === 1 || modo === 2) ? ('videos.src.video' | translate) + '*' : 'videos.src.video' | translate}}</label>
+        <div class="input-group" >
+          <textarea rows="4" type="text" class="form-control" maxlength="200" formControlName="srcVideo" (blur)="limpiarControls('srcVideo')"></textarea>
+        </div>
+
+        <div *ngIf="this.modo !== 1">
+          <label>{{'videos.fecha.creacion' | translate}}</label>
+          <div class="input-group" >
+            <input type="text" class="form-control" formControlName="fechaCreacion" >
+          </div>
         </div>
       </div>
     </div>
@@ -126,7 +144,7 @@
 
 <ng-template #contentEliminar let-modal>
   <div class="modal-header badge-dark">
-    <h4 class="modal-title" id="modal-basic-title-delete">{{'eliminar' | translate}} {{'titulo.categorias.crud' |
+    <h4 class="modal-title" id="modal-basic-title-delete">{{'eliminar' | translate}} {{'titulo.videos.crud' |
       translate}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
       <span aria-hidden="true">&times;</span>
@@ -136,7 +154,7 @@
   <form [formGroup]="form" (submit)="eliminar()">
     <div class="modal-body">
       <div class="form-group divMensajeEliminar">
-        <span>{{'confirmar.eliminar' | translate}} {{this.form.controls.id.value}} - {{this.form.controls.nombre.value}}</span>
+        <span>{{'confirmar.eliminar' | translate}} {{this.form.controls.id.value}} - {{this.form.controls.descripcion.value}}</span>
       </div>
     </div>
     <div class="modal-footer divFooter">

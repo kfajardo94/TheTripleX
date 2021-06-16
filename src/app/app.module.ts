@@ -15,6 +15,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ReactiveFormsModule} from '@angular/forms';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { CrudVideosComponent } from './views/crud-videos/crud-videos.component';
 
 export function HttpLoaderFactory(http: HttpClient): any {
   return new TranslateHttpLoader(http);
@@ -27,7 +28,8 @@ export function HttpLoaderFactory(http: HttpClient): any {
     FooterComponent,
     HomeComponent,
     VideoComponent,
-    CategoriasComponent
+    CategoriasComponent,
+    CrudVideosComponent
   ],
   imports: [
     BrowserModule,

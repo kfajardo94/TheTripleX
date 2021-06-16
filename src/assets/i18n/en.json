@@ -2,6 +2,9 @@
   "frase.encabezado": "ALL THE PORN YOU WANT",
   "buscar": "Search...",
   "filtros": "Filters",
+  "total.registros": "Total records:",
+  "registros.pagina": "Records per page:",
+  "confirmar.eliminar": "Confirm delete record",
   "id": "ID",
   "acciones": "Actions",
   "agregar": "Add",
@@ -11,9 +14,15 @@
 
   "titulo.categorias": "Categories",
   "titulo.categorias.crud": "Category",
+
   "titulo.videos": "Videos",
+  "titulo.videos.crud": "Video",
 
-  "categorias.nombre": "Name"
+  "categorias.nombre": "Name",
 
+  "videos.descripcion": "Description",
+  "video.src.imagen": "Src Image",
+  "video.src.video": "Src Video",
+  "video.fecha.creacion": "Creation Date"
 
 }

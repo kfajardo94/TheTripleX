@@ -2,6 +2,9 @@
   "frase.encabezado": "TODO EL PORNO QUE QUIERAS",
   "buscar": "Buscar...",
   "filtros": "Filtros",
+  "total.registros": "Total de registros:",
+  "registros.pagina": "Registros por página:",
+  "confirmar.eliminar": "Confirmar eliminar registro",
   "id": "ID",
   "acciones": "Acciones",
   "agregar": "Agregar",
@@ -11,9 +14,15 @@
 
   "titulo.categorias": "Categorías",
   "titulo.categorias.crud": "Categoría",
+
   "titulo.videos": "Videos",
+  "titulo.videos.crud": "Video",
 
-  "categorias.nombre": "Nombre"
+  "categorias.nombre": "Nombre",
 
+  "videos.descripcion": "Descripción",
+  "videos.src.imagen": "Src Imagen",
+  "videos.src.video": "Src Video",
+  "videos.fecha.creacion": "Fecha Creación"
 
 }

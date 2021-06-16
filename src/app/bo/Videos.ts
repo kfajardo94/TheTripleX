@@ -1,12 +1,15 @@
 export class Videos {
   id: number;
+  descripcion: string;
+  srcImagen: string;
   srcVideo: string;
-  miniaturaId: number;
+  fechaCreacion: string;
 
-  constructor(id: number, srcVideo: string, miniaturaId: number) {
+  constructor(id: number, descripcion: string, srcImagen: string, srcVideo: string, fechaCreacion: string) {
     this.id = id;
+    this.descripcion = descripcion;
+    this.srcImagen = srcImagen;
     this.srcVideo = srcVideo;
-    this.miniaturaId = miniaturaId;
+    this.fechaCreacion = fechaCreacion;
   }
-  
 }
