@@ -134,8 +134,8 @@
       </div>
     </div>
     <div class="modal-footer divFooter">
-      <button type="submit" class="btn btn-success" [disabled]="this.form.invalid || deshabilitarBotones" *ngIf="modo !== 3 && modo !== 4"><i class="fas fa-check"></i></button>
       <button type="button" (click)="modal.close()" class="btn btn-danger" [disabled]="deshabilitarBotones"><i class="fas fa-times"></i></button>
+      <button type="submit" class="btn btn-success" [disabled]="this.form.invalid || deshabilitarBotones" *ngIf="modo !== 3 && modo !== 4"><i class="fas fa-check"></i></button>
     </div>
   </form>
 
@@ -158,8 +158,8 @@
       </div>
     </div>
     <div class="modal-footer divFooter">
-      <button type="submit" class="btn btn-success" [disabled]="deshabilitarBotones"><i class="fas fa-check"></i></button>
       <button type="button" (click)="modal.close()" class="btn btn-danger" [disabled]="deshabilitarBotones"><i class="fas fa-times"></i></button>
+      <button type="submit" class="btn btn-success" [disabled]="deshabilitarBotones"><i class="fas fa-check"></i></button>
     </div>
   </form>
 

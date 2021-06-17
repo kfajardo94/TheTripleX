@@ -8,11 +8,14 @@ import {Observable} from 'rxjs';
 })
 export class Services {
 
-  // URL = 'http://localhost:8080';
-  URL = 'https://thetriplex-backend.herokuapp.com';
+  URL = 'http://localhost:8080';
+  // URL = 'https://thetriplex-backend.herokuapp.com';
+  filtroHeader: string;
+  srcVideo: string;
 
   constructor(private http: HttpClient) {
-
+    this.filtroHeader = '';
+    this.srcVideo = '';
   }
 
   getAllItemsFromEntity(entity: string): Observable<any> {
@@ -24,6 +27,17 @@ export class Services {
     });
 
     return this.http.get(this.URL + '/' + entity + '/' + 'getAll', {headers});
+  }
+
+  getByIdFromEntity(entity: string, id: number): Observable<any> {
+
+    const headers = new HttpHeaders({
+      'Access-Control-Allow-Headers' : 'Content-Type',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': '*'
+    });
+
+    return this.http.get(this.URL + '/' + entity + '/getById?' + 'id=' + id, {headers});
   }
 
   getFromEntityByPage(entity: string, obj: any): Observable<any> {

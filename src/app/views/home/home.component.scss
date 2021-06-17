@@ -1,7 +1,9 @@
 .divGeneral{
-  width: 100%;
-  height: 100vh;
   background: #151515;
+  width: 100%;
+  height: 100%;
+  position: page;
+  padding-bottom: 200px;
 }
 
 .list{
@@ -19,4 +21,61 @@
   margin-top: 15px;
   background: black;
   cursor: pointer;
+}
+
+.divPagination1 {
+  float: right;
+  right: 50%;
+  position: relative;
+}
+
+.divPagination2 {
+  float: right;
+  right: -50%;
+  position: relative;
+}
+
+.ngbPaginationClass::ng-deep.page-link{
+  background: black !important;
+  color: white;
+  border-color: white;
+  outline: none;
+  box-shadow: none;
+}
+
+.ngbPaginationClass::ng-deep li.active .page-link{
+  background: slategray !important;
+}
+
+.ngbPaginationClass::ng-deep.page-link:hover{
+  background: #303030 !important;
+}
+
+.divPagination3 {
+  margin-top: 70px;
+  float: left;
+  left: 50%;
+  position: relative;
+}
+
+.divPagination4 {
+  margin-top: 10px;
+  float: left;
+  left: -50%;
+  position: relative;
+}
+
+.divPagination4 span {
+  color: white;
+  font-family: Verdana;
+  font-size: medium;
+  margin: 5px 5px 0px 15px;
+}
+
+.divPageSize{
+  min-width: 67px !important;
+}
+
+.divPageSize button:hover{
+  background: gray !important;
 }

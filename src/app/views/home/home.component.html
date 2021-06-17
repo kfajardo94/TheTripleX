@@ -1,12 +1,21 @@
 <div class="divGeneral">
 
-<div class="row list" >
-  <div *ngFor="let obj of array">
-    <img src="{{obj.srcImagen}}" width="300" height="200" class="miniaturas" (click)="verVideo(obj.id)">
-    <span>{{obj.descripcion}}</span>
+  <div class="row list" >
+    <div *ngFor="let obj of videos">
+      <img src="{{obj.srcImagen}}" width="300" height="200" class="miniaturas" (click)="verVideo(obj.id, obj.srcVideo)">
+      <span>{{obj.descripcion}}</span>
+    </div>
+
   </div>
-
-</div>
-
+  <div class="divPagination1" *ngIf="pagination.collectionSize > 0">
+    <div class="divPagination2">
+      <ngb-pagination class="ngbPaginationClass"
+                      [(page)]="pagination.page"
+                      (pageChange)="changePage($event-1)"
+                      [maxSize]="pagination.maxSize"
+                      [pageSize]="pagination.pageSize"
+                      [collectionSize]="pagination.collectionSize"></ngb-pagination>
+    </div>
+  </div>
 
 </div>
