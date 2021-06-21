@@ -12,7 +12,7 @@ import {SafePipeModule} from 'safe-pipe';
 import {VideoComponent} from './views/video/video.component';
 import {CategoriasComponent} from './views/categorias/categorias.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { CrudVideosComponent } from './views/crud-videos/crud-videos.component';
@@ -38,6 +38,7 @@ export function HttpLoaderFactory(http: HttpClient): any {
     HttpClientModule,
     SafePipeModule,
     NgbModule,
+    FormsModule,
     ReactiveFormsModule,
     TranslateModule.forRoot({
       loader: {

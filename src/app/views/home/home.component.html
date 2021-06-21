@@ -2,8 +2,8 @@
 
   <div class="row list" >
     <div *ngFor="let obj of videos">
-      <img src="{{obj.srcImagen}}" width="300" height="200" class="miniaturas" (click)="verVideo(obj.id, obj.srcVideo)">
-      <span>{{obj.descripcion}}</span>
+      <img src="{{obj.srcImagen}}" width="300" height="200" class="miniaturas" (click)="verVideo(obj.id, obj.srcVideo)" (contextmenu)="verVideo(obj.id, obj.srcVideo)">
+      <span (click)="verVideo(obj.id, obj.srcVideo)">{{obj.descripcion}}</span>
     </div>
 
   </div>

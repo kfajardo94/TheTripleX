@@ -5,8 +5,8 @@
       <input type="image" src="../../../assets/img/logo.png" class="logo" (click)="home()">
     </div>
     <div id="busqueda" class="divBusqueda">
-      <input class="inputBusqueda form-control" placeholder="{{'buscar' | translate}}">
-      <button class="boton-busqueda">
+      <input class="inputBusqueda form-control" placeholder="{{'buscar' | translate}}" [(ngModel)]="filtroBusqueda">
+      <button class="boton-busqueda" (click)="filtrar()">
         <i class="fa fa-search"></i>
       </button>
     </div>

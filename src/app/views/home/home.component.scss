@@ -17,10 +17,19 @@
   color: white;
 }
 
+.list span:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
 .miniaturas{
   margin-top: 15px;
   background: black;
   cursor: pointer;
+}
+
+.miniaturas:hover {
+  opacity: 0.5;
 }
 
 .divPagination1 {

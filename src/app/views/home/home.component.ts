@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {Videos} from '../../bo/Videos';
 import {NgbPagination, NgbPaginationConfig} from '@ng-bootstrap/ng-bootstrap';
 import {Services} from '../../services/Services';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +16,7 @@ export class HomeComponent implements OnInit{
   valorVideo: string;
   url: string;
   pagination: NgbPagination;
+  videos$: Observable<Videos[]>;
 
   constructor(private router: Router, private service: Services) {
     this.videos = [];
@@ -24,12 +26,22 @@ export class HomeComponent implements OnInit{
     this.pagination.page = 0;
     this.pagination.pageSize = 24;
     this.pagination.maxSize = 20;
+    this.videos$ = this.service.getVideos$();
 
   }
 
   ngOnInit(): void {
 
     this.getValuesByPage('', this.service.filtroHeader, this.pagination.page, this.pagination.pageSize);
+
+    this.videos$.subscribe(
+      videos => {
+        this.videos = videos;
+        this.pagination.page = 0;
+        this.pagination.pageSize = 24;
+      }
+    );
+
 
   }
 

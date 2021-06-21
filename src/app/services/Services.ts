@@ -2,20 +2,36 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {UrlField} from '../bo/UrlField';
 import {Observable} from 'rxjs';
+import {Subject} from 'rxjs';
+import {Videos} from '../bo/Videos';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class Services {
 
-  // URL = 'http://localhost:8080';
-  URL = 'https://thetriplex-backend.herokuapp.com';
+  private videos$ = new Subject<Videos[]>();
+  videos: Videos[] = [];
+
+  URL = 'http://localhost:8080';
+  // URL = 'https://thetriplex-backend.herokuapp.com';
   filtroHeader: string;
   srcVideo: string;
 
   constructor(private http: HttpClient) {
     this.filtroHeader = '';
     this.srcVideo = '';
+  }
+
+
+  agregarTodosVideos(videos: Videos[]): void {
+    this.videos = videos;
+    this.videos$.next(this.videos);
+  }
+
+  getVideos$(): Observable<Videos[]> {
+    return this.videos$.asObservable();
   }
 
   getAllItemsFromEntity(entity: string): Observable<any> {
