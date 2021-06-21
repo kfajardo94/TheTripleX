@@ -14,8 +14,8 @@ export class Services {
   private videos$ = new Subject<Videos[]>();
   videos: Videos[] = [];
 
-  URL = 'http://localhost:8080';
-  // URL = 'https://thetriplex-backend.herokuapp.com';
+  // URL = 'http://localhost:8080';
+  URL = 'https://thetriplex-backend.herokuapp.com';
   filtroHeader: string;
   srcVideo: string;
 
