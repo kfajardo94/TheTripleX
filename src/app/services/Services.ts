@@ -15,7 +15,8 @@ export class Services {
   videos: Videos[] = [];
 
   // URL = 'http://localhost:8080';
-  URL = 'https://thetriplex-backend.herokuapp.com';
+  // URL = 'https://thetriplex-backend.herokuapp.com';
+  URL = '';
   filtroHeader: string;
   srcVideo: string;
 
