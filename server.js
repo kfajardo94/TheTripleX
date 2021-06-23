@@ -1,7 +1,7 @@
 //Install express server
 const express = require('express');
 const morgan = require("morgan");
-const { createProxyMiddleware } = require('http-proxy-middleware');
+const createProxyMiddleware = require('http-proxy-middleware');
 const app = express();
 
 // Serve only the static files form the angularapp directory
@@ -9,7 +9,7 @@ const app = express();
 
 
 const PORT = process.env.PORT || 4200;
-const HOST = "localhost";
+const HOST = process.env.HOST;
 const API_SERVICE_URL = "https://thetriplex-backend.herokuapp.com";
 
 app.use(morgan('dev'));
