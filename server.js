@@ -1,18 +1,41 @@
 //Install express server
 const express = require('express');
-const path = require('path');
-const proxy = require('express-http-proxy');
+const morgan = require("morgan");
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const app = express();
 
 // Serve only the static files form the angularapp directory
 // app.use(express.static(__dirname + '/dist/the-triple-x'));
 
-app.use('/video', proxy('https://thetriplex-backend.herokuapp.com'));
 
-app.get('/*', function(req,res) {
+const PORT = process.env.PORT || 4200;
+const HOST = "localhost";
+const API_SERVICE_URL = "https://thetriplex-backend.herokuapp.com";
 
-  res.sendFile(path.join(__dirname+'/dist/the-triple-x/index.html'));
+app.use(morgan('dev'));
+
+app.get('/video', (req, res, next) => {
+  res.send('This is a proxy service which proxies to Billing and Account APIs.');
 });
 
-// Start the app by listening on the default Heroku port
-app.listen(process.env.PORT || 8080);
+// Authorization
+app.use('', (req, res, next) => {
+  if (req.headers.authorization) {
+    next();
+  } else {
+    res.sendStatus(403);
+  }
+});
+
+// Proxy endpoints
+app.use('/video', createProxyMiddleware({
+  target: API_SERVICE_URL,
+  changeOrigin: true,
+  pathRewrite: {
+    [`^/video`]: '',
+  },
+}));
+
+app.listen(PORT, HOST, () => {
+  console.log(`Starting Proxy at ${HOST}:${PORT}`);
+});
