@@ -9,7 +9,7 @@ const app = express();
 
 
 const PORT = process.env.PORT || 4200;
-const HOST = process.env.HOST;
+const HOST = 'localhost';
 const API_SERVICE_URL = "https://thetriplex-backend.herokuapp.com";
 
 app.use(morgan('dev'));
@@ -20,6 +20,7 @@ app.get('/video', (req, res, next) => {
 
 // Authorization
 app.use('', (req, res, next) => {
+  console.log('req.headers.authorization: ', req.headers.authorization);
   if (req.headers.authorization) {
     next();
   } else {
