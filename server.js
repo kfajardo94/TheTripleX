@@ -8,7 +8,7 @@ const app = express();
 // app.use(express.static(__dirname + '/dist/the-triple-x'));
 
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8080;
 const HOST = process.env.HOST;
 const API_SERVICE_URL = "https://thetriplex-backend.herokuapp.com";
 
@@ -29,11 +29,11 @@ app.use('', (req, res, next) => {
 });
 
 // Proxy endpoints
-app.use('/video', createProxyMiddleware({
+app.use('/getByPage', createProxyMiddleware({
   target: API_SERVICE_URL,
   changeOrigin: true,
   pathRewrite: {
-    [`^/video`]: '',
+    [`^/getByPage`]: '',
   },
 }));
 
