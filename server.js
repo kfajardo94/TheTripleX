@@ -18,11 +18,11 @@ app.get('/*', function(req,res) {
   res.sendFile(path.join(__dirname+'/dist/the-triple-x/index.html'));
 });
 
-app.use('/getByPage', createProxyMiddleware({
+app.use('/video/getByPage', createProxyMiddleware({
   target: API_SERVICE_URL,
   changeOrigin: true,
   pathRewrite: {
-    [`^/getByPage`]: '',
+    [`^/video/getByPage`]: '',
   },
 }));
 
