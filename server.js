@@ -33,7 +33,7 @@ app.use('/video/getByPage', createProxyMiddleware({
 }));
 
 // Start the app by listening on the default Heroku port
-app.listen(process.env.PORT || 8081);
+// app.listen(process.env.PORT || 8081);
 
 
 app.listen(PORT, HOST, () => {
