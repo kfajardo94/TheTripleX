@@ -7,6 +7,7 @@ const createProxyMiddleware = require('http-proxy-middleware');
 const app = express();
 
 const API_SERVICE_URL = "https://thetriplex-backend.herokuapp.com";
+const HOST = process.env.HOST;
 
 app.use(morgan('dev'));
 
@@ -32,3 +33,8 @@ app.use('/video/getByPage', createProxyMiddleware({
 
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 8081);
+
+
+app.listen(PORT, HOST, () => {
+  console.log(`Starting Proxy at ${HOST}:${PORT}`);
+});
