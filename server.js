@@ -7,7 +7,7 @@ const createProxyMiddleware = require('http-proxy-middleware');
 const app = express();
 
 const API_SERVICE_URL = "https://thetriplex-backend.herokuapp.com";
-const HOST = "https://thetriplex.herokuapp.com";
+const HOST = "localhost";
 const PORT = "4200";
 
 app.use(morgan('dev'));
@@ -24,11 +24,11 @@ app.get('/*', function(req,res) {
   res.sendFile(path.join(__dirname+'/dist/the-triple-x/index.html'));
 });
 
-app.use('/video/getByPage', createProxyMiddleware({
+app.use('/getByPage', createProxyMiddleware({
   target: API_SERVICE_URL,
   changeOrigin: true,
   pathRewrite: {
-    [`^/video/getByPage`]: '',
+    [`^/getByPage`]: '',
   },
 }));
 
