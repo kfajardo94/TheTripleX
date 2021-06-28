@@ -7,8 +7,8 @@ const createProxyMiddleware = require('http-proxy-middleware');
 const app = express();
 
 const API_SERVICE_URL = "https://thetriplex-backend.herokuapp.com";
-const HOST = process.env.HOST || "https://thetriplex.herokuapp.com";
-const PORT = process.env.PORT || "4200";
+const HOST = "https://thetriplex.herokuapp.com";
+const PORT = "4200";
 
 app.use(morgan('dev'));
 
