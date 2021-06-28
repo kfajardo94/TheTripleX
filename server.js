@@ -10,6 +10,10 @@ const API_SERVICE_URL = "https://thetriplex-backend.herokuapp.com";
 
 app.use(morgan('dev'));
 
+app.get('/video/getByPage', (req, res, next) => {
+  res.send('This is a proxy service which proxies to Billing and Account APIs.');
+});
+
 // Serve only the static files form the angularapp directory
 app.use(express.static(__dirname + '/dist/the-triple-x'));
 
