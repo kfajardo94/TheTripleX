@@ -1,8 +1,1 @@
-{
-  "/video/*": {
-    "target": "https://thetriplex-backend.herokuapp.com",
-    "secure": false,
-    "logLevel": "debug",
-    "changeOrigin": true
-  }
-}
+{}
