@@ -2,6 +2,7 @@ import {AfterContentChecked, AfterContentInit, AfterViewInit, Component, OnInit}
 import {Videos} from '../../bo/Videos';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Services} from '../../services/Services';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-video',
@@ -22,13 +23,15 @@ export class VideoComponent implements OnInit {
 
   ngOnInit(): void {
     this.sourceVideo = this.service.srcVideo;
-    // this.service.getByIdFromEntity('video', this.idVideo).subscribe( res => {
-    //   this.video = (res as Videos);
-    //   this.sourceVideo = this.video.srcVideo;
-    //   }, error => {
-    //     console.error('Error al consumir get by id');
-    //   }
-    // );
+    if (!this.sourceVideo) {
+      this.service.getByIdFromEntity('video', this.idVideo).subscribe( res => {
+        this.video = (res as Videos);
+        this.sourceVideo = this.video.srcVideo;
+        }, error => {
+          console.error('Error al consumir get by id');
+        }
+      );
+    }
   }
 
 }

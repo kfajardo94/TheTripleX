@@ -42,7 +42,6 @@ export class HomeComponent implements OnInit{
       }
     );
 
-
   }
 
   getValuesByPage(idValue: any, descripcionValue: string, pageValue: any, sizeValue: any): void{
@@ -61,15 +60,13 @@ export class HomeComponent implements OnInit{
     });
   }
 
-  verVideo(idValue: any, srcVideo: any): void {
-    this.service.srcVideo = srcVideo;
-    this.router.navigate([this.url + 'video'], {queryParams: {id: idValue}});
-  }
-
   changePage(event: any): void {
     this.pagination.page = event;
     this.getValuesByPage('',
       this.service.filtroHeader.trim(), this.pagination.page, this.pagination.pageSize);
   }
 
+  enviarSrc(src: string): void {
+    this.service.srcVideo = src;
+  }
 }

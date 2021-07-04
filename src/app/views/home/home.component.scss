@@ -22,6 +22,14 @@
   opacity: 0.5;
 }
 
+.list a {
+  color: white;
+}
+
+.list a:hover {
+  text-decoration: none;
+}
+
 .miniaturas{
   margin-top: 15px;
   background: black;
