@@ -1,4 +1,12 @@
-import {AfterContentChecked, AfterContentInit, AfterViewInit, Component, OnInit} from '@angular/core';
+import {
+  AfterContentChecked,
+  AfterContentInit,
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import {Videos} from '../../bo/Videos';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Services} from '../../services/Services';
@@ -10,7 +18,6 @@ import {Observable} from 'rxjs';
   styleUrls: ['./video.component.scss']
 })
 export class VideoComponent implements OnInit {
-
   video: Videos;
   sourceVideo: string;
   idVideo = 0;
