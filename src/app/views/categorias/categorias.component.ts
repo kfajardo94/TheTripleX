@@ -59,7 +59,7 @@ export class CategoriasComponent implements OnInit {
     this.getValuesByPage('', '', this.pagination.page, this.pagination.pageSize);
   }
 
-  modal(content: any, modo: number, item: any, html: any): void {
+  modal(content: any, modo: number, item: any): void {
     this.modo = modo;
     this.deshabilitarBotones = false;
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
