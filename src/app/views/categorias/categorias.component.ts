@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Categorias} from '../../bo/Categorias';
 import {NgbModal, NgbPagination, NgbPaginationConfig} from '@ng-bootstrap/ng-bootstrap';
 import {FormControl, FormGroup, Validators, ReactiveFormsModule} from '@angular/forms';
@@ -59,13 +59,18 @@ export class CategoriasComponent implements OnInit {
     this.getValuesByPage('', '', this.pagination.page, this.pagination.pageSize);
   }
 
-  modal(content: any, modo: number, item: any): void {
+  modal(content: any, modo: number, item: any, html: any): void {
     this.modo = modo;
     this.deshabilitarBotones = false;
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       }, (reason) => {
       }
     );
+
+    const inputNombre = document.getElementById('inputNombre');
+    if (inputNombre) {
+      inputNombre.focus();
+    }
 
     if (this.modo === 1) {
       this.nombreAccion = 'agregar';
@@ -110,8 +115,9 @@ export class CategoriasComponent implements OnInit {
             this.modalService.dismissAll();
             this.mostrarMensaje = false;
           } , 1000);
-          this.getValuesByPage(this.formFiltrosBK.controls.id.value.toString().trim(),
-            this.formFiltrosBK.controls.nombre.value.toString().trim(), 0, this.pagination.pageSize);
+          this.limpiarFiltros();
+          this.getValuesByPage(this.formFiltros.controls.id.value.toString().trim(),
+            this.formFiltros  .controls.nombre.value.toString().trim(), 0, this.pagination.pageSize);
         }, error1 => {
           this.type = 'danger';
           this.mensaje = 'Ha ocurrido un error al insertar los datos';
@@ -229,4 +235,5 @@ export class CategoriasComponent implements OnInit {
     this.getValuesByPage(this.formFiltros.controls.id.value.toString().trim(),
       this.formFiltros.controls.nombre.value.toString().trim(), 0, this.pagination.pageSize);
   }
+
 }

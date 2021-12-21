@@ -16,7 +16,8 @@
             <div class="form-group col-sm-6" style="margin: 0 auto;">
               <label>{{'id' | translate}}</label>
               <div class="input-group" >
-                <input type="text" class="form-control" maxlength="10" size="10" width="100" formControlName="id" >
+                <input type="number" class="form-control" maxlength="10" size="10" width="100" formControlName="id"
+                       oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
               </div>
               <label>{{'categorias.nombre' | translate}}</label>
               <div class="input-group" >
@@ -100,7 +101,7 @@
     </button>
   </div>
   <ngb-alert type="{{type}}" *ngIf="mostrarMensaje" [dismissible]="false">{{mensaje}}</ngb-alert>
-  <form [formGroup]="form" (submit)="guardar()">
+  <form [formGroup]="form" (submit)="guardar()" >
     <div class="modal-body">
       <div class="form-group">
         <div *ngIf="this.modo !== 1">
@@ -111,7 +112,7 @@
         </div>
         <label>{{(this.modo === 1 || modo === 2) ? ('categorias.nombre' | translate) + '*' : 'categorias.nombre' | translate}}</label>
         <div class="input-group" >
-          <input type="text" class="form-control" maxlength="50" formControlName="nombre" (blur)="limpiarControls('nombre')">
+          <input id="inputNombre" type="text" class="form-control" maxlength="50" formControlName="nombre" (blur)="limpiarControls('nombre')" >
         </div>
       </div>
     </div>
