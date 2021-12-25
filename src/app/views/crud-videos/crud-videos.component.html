@@ -112,7 +112,7 @@
 
         <label>{{(this.modo === 1 || modo === 2) ? ('videos.descripcion' | translate) + '*' : 'videos.descripcion' | translate}}</label>
         <div class="input-group" >
-          <textarea rows="4" type="text" class="form-control" maxlength="200" formControlName="descripcion" (blur)="limpiarControls('descripcion')"></textarea>
+          <textarea id="inputDescripcion" rows="4" type="text" class="form-control" maxlength="200" formControlName="descripcion" (blur)="limpiarControls('descripcion')"></textarea>
         </div>
 
         <label>{{(this.modo === 1 || modo === 2) ? ('videos.src.imagen' | translate) + '*' : 'videos.src.imagen' | translate}}</label>

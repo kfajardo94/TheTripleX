@@ -70,6 +70,11 @@ export class CrudVideosComponent implements OnInit {
       }
     );
 
+    const inputDescripcion = document.getElementById('inputDescripcion');
+    if (inputDescripcion) {
+      inputDescripcion.focus();
+    }
+
     if (this.modo === 1) {
       this.nombreAccion = 'agregar';
       this.form = new FormGroup({
