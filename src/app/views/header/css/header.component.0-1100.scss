@@ -1,0 +1,93 @@
+@media only screen and (min-width: 0px) and (max-width: 1100px) {
+
+  .divGeneral{
+    width: 100%;
+    height: 220px;
+    background: #c80034;
+  }
+  
+  //div general
+  .generalBusqueda {
+    padding-top: 15px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  //sección logo
+  .divLogo {
+    width: 100%;
+    text-align: center;
+  }
+  
+  //sección búsqueda
+  .divBusqueda {
+    width: 85%;
+    margin: 0 auto;
+    display: flex;
+  }
+  
+  .inputBusqueda {
+    width: 87%;
+    height: 40px;
+    border-radius: 3px 0px 0px 3px;
+    border-right: 0px;
+    border-left: 1.9px solid gray;
+    border-top: 1.9px solid gray;
+    border-bottom: 1.9px solid gray;
+    font-family: Verdana;
+  }
+  
+  .inputBusqueda:focus{
+    box-shadow: none;
+  }
+  
+  .boton-busqueda{
+    width: 13%;
+    height: 40px;
+    border-radius: 0px 3px 3px 0px;
+    outline: none;
+    background: silver;
+    border-left: 0px;
+    border-right: 1.9px solid gray;
+    border-top: 1.9px solid gray;
+    border-bottom: 1.9px solid gray;
+  }
+  
+  .boton-busqueda:active{
+      box-shadow: inset 0px 0.5px 3px 0px black;
+  }
+  
+  .divMensajeTitulo {
+    margin-top: 15px;
+    text-align: center;
+    font-size: small;
+    font-weight: bold;
+    font-family: Verdana;
+    color: white;
+  }
+    //sección opciones
+  .divOpciones {
+    width: 100%;
+  }
+  
+  .botonOpciones {
+    width: 100%;
+    text-align: center;
+  }
+
+  .botonOpciones button {
+    width: 50%;
+    text-align: center;
+  }
+
+  .divMenu button {
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+  }
+
+  .divMenu button:hover {
+    background: gray !important;
+  }
+
+}

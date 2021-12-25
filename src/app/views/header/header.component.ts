@@ -7,7 +7,10 @@ import {Videos} from '../../bo/Videos';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./css/header.component.0-1100.scss',
+              './css/header.component.1101-1440.scss',
+              './css/header.component.1441-2000.scss',
+              './css/header.component.2001.scss']
 })
 export class HeaderComponent implements OnInit {
 

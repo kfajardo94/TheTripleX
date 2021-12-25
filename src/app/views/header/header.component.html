@@ -6,6 +6,7 @@
     </div>
     <div id="busqueda" class="divBusqueda">
       <input class="inputBusqueda form-control" placeholder="{{'buscar' | translate}}" [(ngModel)]="filtroBusqueda">
+      <br>
       <button class="boton-busqueda" (click)="filtrar()">
         <i class="fa fa-search"></i>
       </button>
@@ -17,7 +18,7 @@
   </div>
   <div class=" divOpciones">
     <div class="col">
-      <div ngbDropdown class="d-inline-block">
+      <div ngbDropdown class="d-inline-block botonOpciones">
         <button class="btn btn-dark" id="dropdownBasic1" ngbDropdownToggle>
           <i class="fa fa-list"></i>
         </button>

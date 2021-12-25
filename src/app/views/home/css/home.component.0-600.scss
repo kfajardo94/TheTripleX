@@ -1,0 +1,106 @@
+@media only screen and ( min-width: 0px) and ( max-width: 600px) {
+  .divGeneral{
+    background: #151515;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding-bottom: 200px;
+  }
+  
+  .list{
+    margin: 0 auto;
+    width: 90%;
+    padding-top: 25px;
+    padding-bottom: 50px;
+    text-align: center;
+    color: white;
+  }
+  
+  .list span:hover {
+    cursor: pointer;
+    opacity: 0.5;
+  }
+  
+  .list a {
+    color: white;
+  }
+  
+  .list a:hover {
+    text-decoration: none;
+  }
+ 
+  .video {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+
+  .miniaturas{
+    margin-top: 15px;
+    margin-bottom: 5px;
+    background: black;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .miniaturas:hover {
+    opacity: 0.5;
+  }
+
+  .divPagination1 {
+    float: right;
+    right: 50%;
+    position: relative;
+  }
+  
+  .divPagination2 {
+    float: right;
+    right: -50%;
+    position: relative;
+  }
+  
+  .ngbPaginationClass::ng-deep.page-link{
+    background: black !important;
+    color: white;
+    border-color: white;
+    outline: none;
+    box-shadow: none;
+  }
+  
+  .ngbPaginationClass::ng-deep li.active .page-link{
+    background: slategray !important;
+  }
+  
+  .ngbPaginationClass::ng-deep.page-link:hover{
+    background: #303030 !important;
+  }
+  
+  .divPagination3 {
+    margin-top: 70px;
+    float: left;
+    left: 50%;
+    position: relative;
+  }
+  
+  .divPagination4 {
+    margin-top: 10px;
+    float: left;
+    left: -50%;
+    position: relative;
+  }
+  
+  .divPagination4 span {
+    color: white;
+    font-family: Verdana;
+    font-size: medium;
+    margin: 5px 5px 0px 15px;
+  }
+  
+  .divPageSize{
+    min-width: 67px !important;
+  }
+  
+  .divPageSize button:hover{
+    background: gray !important;
+  }
+}

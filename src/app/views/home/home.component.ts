@@ -8,7 +8,11 @@ import {Observable} from 'rxjs';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./css/home.component.0-600.scss',
+              './css/home.component.601-1000.scss',
+              './css/home.component.1001-1440.scss',
+              './css/home.component.1441-2000.scss',
+              './css/home.component.2001.scss']
 })
 export class HomeComponent implements OnInit{
 
