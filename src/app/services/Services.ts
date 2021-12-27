@@ -14,18 +14,27 @@ export class Services {
   private videos$ = new Subject<Videos[]>();
   videos: Videos[] = [];
 
-  URL = 'http://localhost:8080';
-  // URL = 'http://192.168.0.2:8080';
+  private tituloHeader$ = new Subject<string>();
+
+  // URL = 'http://localhost:8080';
+  URL = 'http://192.168.0.2:8080';
   // URL = 'https://thetriplex-backend.herokuapp.com';
   // URL = '';
   filtroHeader: string;
-  srcVideo: string;
+  
 
   constructor(private http: HttpClient) {
     this.filtroHeader = '';
-    this.srcVideo = '';
   }
 
+
+  setTitle$(titleHeader: string): void {
+    this.tituloHeader$.next(titleHeader);
+  }
+
+  getTitle$(): Observable<string> {
+    return this.tituloHeader$.asObservable();
+  }
 
   agregarTodosVideos(videos: Videos[]): void {
     this.videos = videos;

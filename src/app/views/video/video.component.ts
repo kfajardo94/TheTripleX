@@ -29,16 +29,20 @@ export class VideoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sourceVideo = this.service.srcVideo;
     if (!this.sourceVideo) {
       this.service.getByIdFromEntity('video', this.idVideo).subscribe( res => {
         this.video = (res as Videos);
         this.sourceVideo = this.video.srcVideo;
+        this.service.setTitle$(this.video.descripcion);
         }, error => {
           console.error('Error al consumir get by id');
         }
       );
     }
+
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+
   }
 
 }

@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit{
     this.pagination = new NgbPagination(new NgbPaginationConfig());
     this.pagination.page = 0;
     this.pagination.pageSize = 24;
-    this.pagination.maxSize = 20;
+    this.pagination.maxSize = 2;
     this.videos$ = this.service.getVideos$();
 
   }
@@ -46,6 +46,11 @@ export class HomeComponent implements OnInit{
       }
     );
 
+    this.service.setTitle$('Triple-X');
+
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+
   }
 
   getValuesByPage(idValue: any, descripcionValue: string, pageValue: any, sizeValue: any): void{
@@ -58,6 +63,7 @@ export class HomeComponent implements OnInit{
 
     this.service.getFromEntityByPage('video', obj).subscribe( res => {
       this.videos = res.content;
+
       this.pagination.collectionSize = res  .totalElements;
     }, error1 => {
       console.error('Error al consumir Get All');
@@ -70,7 +76,4 @@ export class HomeComponent implements OnInit{
       this.service.filtroHeader.trim(), this.pagination.page, this.pagination.pageSize);
   }
 
-  enviarSrc(src: string): void {
-    this.service.srcVideo = src;
-  }
 }

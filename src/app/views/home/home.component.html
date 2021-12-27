@@ -2,13 +2,11 @@
 
   <div class="row list" >
     <div *ngFor="let obj of videos" class="video">
-      <a [routerLink]="['/video']" [queryParams]="{id: obj.id}" (click)="enviarSrc(obj.srcVideo);"
-         (contextmenu)="enviarSrc(obj.srcVideo);">
+      <a [routerLink]="['/video']" [queryParams]="{id: obj.id}">
         <img src="{{obj.srcImagen}}" height="200" class="miniaturas">
       </a>
       <br>
-      <a [routerLink]="['/video']" [queryParams]="{id: obj.id}" (click)="enviarSrc(obj.srcVideo);"
-         (contextmenu)="enviarSrc(obj.srcVideo);">{{obj.descripcion}}</a>
+      <a [routerLink]="['/video']" [queryParams]="{id: obj.id}">{{obj.descripcion}}</a>
     </div>
 
   </div>

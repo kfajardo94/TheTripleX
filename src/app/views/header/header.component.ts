@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {Services} from '../../services/Services';
 import {NgbPagination, NgbPaginationConfig} from '@ng-bootstrap/ng-bootstrap';
 import {Videos} from '../../bo/Videos';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -18,6 +19,7 @@ export class HeaderComponent implements OnInit {
   url: string;
   pagination: NgbPagination;
   filtroBusqueda: string;
+  titleHeader$: Observable<string>;
 
 
   constructor(private router: Router,
@@ -28,13 +30,14 @@ export class HeaderComponent implements OnInit {
     this.pagination.page = 0;
     this.pagination.pageSize = 24;
     this.filtroBusqueda = '';
+    this.titleHeader$ = this.services.getTitle$();
   }
 
   ngOnInit(): void {
 
-    if (!this.title) {
-      this.title = 'Triple-X';
-    }
+    this.titleHeader$.subscribe( res => {
+      this.title = res;
+    });
 
   }
 
@@ -63,7 +66,7 @@ export class HeaderComponent implements OnInit {
 
     this.services.getFromEntityByPage('video', obj).subscribe( res => {
       this.services.agregarTodosVideos(res.content);
-      this.pagination.collectionSize = res  .totalElements;
+      this.pagination.collectionSize = res.totalElements;
     }, error1 => {
       console.error('Error al consumir Get All');
     });
