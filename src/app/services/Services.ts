@@ -17,8 +17,8 @@ export class Services {
   private tituloHeader$ = new Subject<string>();
 
   // URL = 'http://localhost:8080';
-  URL = 'http://192.168.0.2:8080';
-  // URL = 'https://thetriplex-backend.herokuapp.com';
+  // URL = 'http://192.168.0.2:8080';
+  URL = 'https://thetriplex-backend.herokuapp.com';
   // URL = '';
   filtroHeader: string;
   
