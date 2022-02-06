@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {UrlField} from '../bo/UrlField';
-import {Observable} from 'rxjs';
-import {Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {Videos} from '../bo/Videos';
 
 
@@ -13,6 +12,8 @@ export class Services {
 
   private videos$ = new Subject<Videos[]>();
   videos: Videos[] = [];
+  private collectionSize$ = new Subject<number>();
+  private filtroHeader$ = new Subject<string>();
 
   private tituloHeader$ = new Subject<string>();
 
@@ -20,11 +21,9 @@ export class Services {
   // URL = 'http://192.168.0.2:8080';
   URL = 'https://thetriplex-backend.herokuapp.com';
   // URL = '';
-  filtroHeader: string;
-  
+
 
   constructor(private http: HttpClient) {
-    this.filtroHeader = '';
   }
 
 
@@ -43,6 +42,22 @@ export class Services {
 
   getVideos$(): Observable<Videos[]> {
     return this.videos$.asObservable();
+  }
+
+  setCollectionSize$(collectionSize: number): void {
+    this.collectionSize$.next(collectionSize);
+  }
+
+  getCollectionSize$(): Observable<number> {
+    return this.collectionSize$.asObservable();
+  }
+
+  setFiltroHeader$(valor: string): void {
+    this.filtroHeader$.next(valor);
+  }
+
+  getFiltroHeader$(): Observable<string> {
+    return this.filtroHeader$.asObservable();
   }
 
   getAllItemsFromEntity(entity: string): Observable<any> {

@@ -20,23 +20,36 @@ export class HomeComponent implements OnInit{
   valorVideo: string;
   url: string;
   pagination: NgbPagination;
+  filtroHeader: string;
   videos$: Observable<Videos[]>;
+  collectionSize$: Observable<number>;
+  filtroHeader$: Observable<string>;
 
   constructor(private router: Router, private service: Services) {
     this.videos = [];
     this.valorVideo = '';
+    this.filtroHeader = '';
     this.url = this.router.url;
     this.pagination = new NgbPagination(new NgbPaginationConfig());
     this.pagination.page = 0;
     this.pagination.pageSize = 24;
     this.pagination.maxSize = 2;
     this.videos$ = this.service.getVideos$();
+    this.collectionSize$ = this.service.getCollectionSize$();
+    this.filtroHeader$ = this.service.getFiltroHeader$();
 
   }
 
   ngOnInit(): void {
+    this.filtroHeader = '';
 
-    this.getValuesByPage('', this.service.filtroHeader, this.pagination.page, this.pagination.pageSize);
+    this.filtroHeader$.subscribe( res => {
+      if (res) {
+        this.filtroHeader = res.trim();
+      }
+    });
+
+    this.getValuesByPage('', this.filtroHeader, this.pagination.page, this.pagination.pageSize);
 
     this.videos$.subscribe(
       videos => {
@@ -45,6 +58,10 @@ export class HomeComponent implements OnInit{
         this.pagination.pageSize = 24;
       }
     );
+
+    this.collectionSize$.subscribe( res => {
+      this.pagination.collectionSize = res;
+    });
 
     this.service.setTitle$('Triple-X');
 
@@ -73,7 +90,12 @@ export class HomeComponent implements OnInit{
   changePage(event: any): void {
     this.pagination.page = event;
     this.getValuesByPage('',
-      this.service.filtroHeader.trim(), this.pagination.page, this.pagination.pageSize);
+      this.filtroHeader.trim(), this.pagination.page, this.pagination.pageSize);
+  }
+
+  enviar(idValue: any): void{
+    this.router.navigate(['/video'], {queryParams: {id: idValue}});
+    this.service.setFiltroHeader$('');
   }
 
 }

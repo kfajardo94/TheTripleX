@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {Services} from '../../services/Services';
 import {NgbPagination, NgbPaginationConfig} from '@ng-bootstrap/ng-bootstrap';
-import {Videos} from '../../bo/Videos';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -20,6 +19,7 @@ export class HeaderComponent implements OnInit {
   pagination: NgbPagination;
   filtroBusqueda: string;
   titleHeader$: Observable<string>;
+  filtroHeader$: Observable<string>;
 
 
   constructor(private router: Router,
@@ -31,6 +31,7 @@ export class HeaderComponent implements OnInit {
     this.pagination.pageSize = 24;
     this.filtroBusqueda = '';
     this.titleHeader$ = this.services.getTitle$();
+    this.filtroHeader$ = this.services.getFiltroHeader$();
   }
 
   ngOnInit(): void {
@@ -39,12 +40,15 @@ export class HeaderComponent implements OnInit {
       this.title = res;
     });
 
+    this.filtroHeader$.subscribe(res => {
+      this.filtroBusqueda = res;
+    });
+
   }
 
   home(): any {
-    this.router.navigate(['']);
-    this.filtroBusqueda = '';
-    this.services.filtroHeader = this.filtroBusqueda;
+    this.services.setFiltroHeader$('');
+    this.viajarOpciones('');
     this.getValuesByPage('', '', this.pagination.page, this.pagination.pageSize);
   }
 
@@ -53,8 +57,19 @@ export class HeaderComponent implements OnInit {
   }
 
   filtrar(): void {
-    this.services.filtroHeader = this.filtroBusqueda;
-    this.getValuesByPage('', this.services.filtroHeader, this.pagination.page, this.pagination.pageSize);
+    this.filtroBusqueda = this.filtroBusqueda.trim();
+    if (this.filtroBusqueda) {
+      this.services.setFiltroHeader$(this.filtroBusqueda);
+      this.getValuesByPage('', this.filtroBusqueda, this.pagination.page, this.pagination.pageSize);
+      this.viajarOpciones('');
+    }
+  }
+
+  filtroEnter(event: any): void{
+
+    if (event['keyCode'] === 13) {
+      this.filtrar();
+    }
   }
 
   getValuesByPage(idValue: any, descripcionValue: string, pageValue: any, sizeValue: any): void{
@@ -66,9 +81,10 @@ export class HeaderComponent implements OnInit {
 
     this.services.getFromEntityByPage('video', obj).subscribe( res => {
       this.services.agregarTodosVideos(res.content);
-      this.pagination.collectionSize = res.totalElements;
+      this.services.setCollectionSize$(res.totalElements);
     }, error1 => {
       console.error('Error al consumir Get All');
     });
   }
+
 }

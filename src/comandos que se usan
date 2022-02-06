@@ -1,0 +1,8 @@
+construir el dist
+ng build
+
+levantar normal
+ng serve
+
+levantar para consumir en múltiples dispositivos
+ng serve --host 0.0.0.0

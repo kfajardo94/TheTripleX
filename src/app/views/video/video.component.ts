@@ -1,16 +1,8 @@
-import {
-  AfterContentChecked,
-  AfterContentInit,
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild
-} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Videos} from '../../bo/Videos';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {Services} from '../../services/Services';
-import {Observable} from 'rxjs';
+import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-video',
@@ -19,10 +11,11 @@ import {Observable} from 'rxjs';
 })
 export class VideoComponent implements OnInit {
   video: Videos;
-  sourceVideo: string;
+  sourceVideo: SafeResourceUrl;
   idVideo = 0;
 
-  constructor(private route: ActivatedRoute, private service: Services) {
+  constructor(private route: ActivatedRoute, private service: Services,
+              private sanitizer: DomSanitizer) {
     this.sourceVideo = '';
     this.idVideo = Number(this.route.snapshot.queryParamMap.get('id'));
     this.video = new Videos(0, '', '', '', '');
@@ -32,7 +25,9 @@ export class VideoComponent implements OnInit {
     if (!this.sourceVideo) {
       this.service.getByIdFromEntity('video', this.idVideo).subscribe( res => {
         this.video = (res as Videos);
-        this.sourceVideo = this.video.srcVideo;
+        if (this.sanitizer.bypassSecurityTrustResourceUrl(this.video.srcVideo)) {
+          this.sourceVideo = this.sanitizer.bypassSecurityTrustResourceUrl(this.video.srcVideo);
+        }
         this.service.setTitle$(this.video.descripcion);
         }, error => {
           console.error('Error al consumir get by id');
