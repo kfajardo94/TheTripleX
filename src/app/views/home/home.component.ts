@@ -44,9 +44,7 @@ export class HomeComponent implements OnInit{
     this.filtroHeader = '';
 
     this.filtroHeader$.subscribe( res => {
-      if (res) {
-        this.filtroHeader = res.trim();
-      }
+      this.filtroHeader = res.trim();
     });
 
     this.getValuesByPage('', this.filtroHeader, this.pagination.page, this.pagination.pageSize);
