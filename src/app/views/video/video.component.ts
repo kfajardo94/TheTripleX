@@ -7,18 +7,21 @@ import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 @Component({
   selector: 'app-video',
   templateUrl: './video.component.html',
-  styleUrls: ['./video.component.scss']
+  styleUrls: ['./css/video.component.scss',
+              './css/video.component.0-600.scss']
 })
 export class VideoComponent implements OnInit {
   video: Videos;
   sourceVideo: SafeResourceUrl;
   idVideo = 0;
+  descripcion: string;
 
   constructor(private route: ActivatedRoute, private service: Services,
               private sanitizer: DomSanitizer) {
     this.sourceVideo = '';
     this.idVideo = Number(this.route.snapshot.queryParamMap.get('id'));
     this.video = new Videos(0, '', '', '', '');
+    this.descripcion = '';
   }
 
   ngOnInit(): void {
@@ -27,6 +30,7 @@ export class VideoComponent implements OnInit {
         this.video = (res as Videos);
         if (this.sanitizer.bypassSecurityTrustResourceUrl(this.video.srcVideo)) {
           this.sourceVideo = this.sanitizer.bypassSecurityTrustResourceUrl(this.video.srcVideo);
+          this.descripcion = this.video.descripcion;
         }
         this.service.setTitle$(this.video.descripcion);
         }, error => {
