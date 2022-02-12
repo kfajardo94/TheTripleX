@@ -1,5 +1,13 @@
 <div class="divGeneral">
 
+  <div class="d-flex justify-content-center" *ngIf="pagination.collectionSize > 0">
+    <ngb-pagination class="divPagination1 ngbPaginationClass"
+                    [(page)]="pagination.page"
+                    (pageChange)="changePage($event-1)"
+                    [maxSize]="pagination.maxSize"
+                    [pageSize]="pagination.pageSize"
+                    [collectionSize]="pagination.collectionSize"></ngb-pagination>
+  </div>
   <div class="row list" >
     <div *ngFor="let obj of videos" class="video">
       <a (click)="enviar(obj.id)" >
@@ -10,15 +18,13 @@
     </div>
 
   </div>
-  <div class="divPagination1" *ngIf="pagination.collectionSize > 0">
-    <div class="divPagination2">
-      <ngb-pagination class="ngbPaginationClass"
+  <div class="d-flex justify-content-center" *ngIf="pagination.collectionSize > 0">
+      <ngb-pagination class="divPagination2 ngbPaginationClass"
                       [(page)]="pagination.page"
                       (pageChange)="changePage($event-1)"
                       [maxSize]="pagination.maxSize"
                       [pageSize]="pagination.pageSize"
                       [collectionSize]="pagination.collectionSize"></ngb-pagination>
-    </div>
   </div>
 
 </div>

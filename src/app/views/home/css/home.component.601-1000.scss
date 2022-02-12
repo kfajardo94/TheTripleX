@@ -50,15 +50,12 @@
   }
 
   .divPagination1 {
-    float: right;
-    right: 50%;
-    position: relative;
+    margin-top: 60px;
+    margin-bottom: -30px;
   }
-  
+
   .divPagination2 {
-    float: right;
-    right: -50%;
-    position: relative;
+    margin-top: 20px;
   }
   
   .ngbPaginationClass::ng-deep.page-link{
@@ -77,32 +74,4 @@
     background: #303030 !important;
   }
   
-  .divPagination3 {
-    margin-top: 70px;
-    float: left;
-    left: 50%;
-    position: relative;
-  }
-  
-  .divPagination4 {
-    margin-top: 10px;
-    float: left;
-    left: -50%;
-    position: relative;
-  }
-  
-  .divPagination4 span {
-    color: white;
-    font-family: Verdana;
-    font-size: medium;
-    margin: 5px 5px 0px 15px;
-  }
-  
-  .divPageSize{
-    min-width: 67px !important;
-  }
-  
-  .divPageSize button:hover{
-    background: gray !important;
-  }
 }

@@ -89,6 +89,8 @@ export class HomeComponent implements OnInit{
     this.pagination.page = event;
     this.getValuesByPage('',
       this.filtroHeader.trim(), this.pagination.page, this.pagination.pageSize);
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }
 
   enviar(idValue: any): void{
