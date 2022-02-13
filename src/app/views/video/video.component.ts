@@ -17,6 +17,8 @@ export class VideoComponent implements OnInit {
   descripcion: string;
   comentario: string;
   longitud: string;
+  mostrarEmoji: boolean;
+  numeroComentarios: number;
 
   constructor(private route: ActivatedRoute, private service: Services,
               private sanitizer: DomSanitizer) {
@@ -26,6 +28,8 @@ export class VideoComponent implements OnInit {
     this.descripcion = '';
     this.comentario = '';
     this.longitud = '';
+    this.mostrarEmoji = false;
+    this.numeroComentarios = 0;
   }
 
   ngOnInit(): void {
@@ -49,13 +53,9 @@ export class VideoComponent implements OnInit {
     const obj =  document.getElementById('comentario') as HTMLTextAreaElement;
 
     this.comentario = '';
+    console.log('obj: ', obj.maxLength)
     this.longitud = String(obj.maxLength);
 
-  }
-
-  playPause(event: any): void {
-
-    console.log('event: ', event);
   }
 
 

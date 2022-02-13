@@ -11,6 +11,8 @@
   "editar": "Editar",
   "ver": "Ver",
   "eliminar": "Eliminar",
+  "comentar": "Comentar",
+  "descripcion.comentarios": "Todos los comentarios",
 
   "titulo.categorias": "Categorías",
   "titulo.categorias.crud": "Categoría",

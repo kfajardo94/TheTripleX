@@ -1,14 +1,18 @@
 <div class="divGeneral">
   <div class="divVideo">
     <p class="titulo">{{descripcion}}</p>
-    <iframe (click)="playPause($event)"
+    <iframe
       [src]="sourceVideo" class="iframe" frameborder=0 sandbox="allow-same-origin allow-scripts"></iframe>
+    <div class="divDescComentario">
+      <span class="descripcionComentarios">{{'descripcion.comentarios' | translate}}  {{"(" + numeroComentarios + ")"}}</span>
+    </div>
+    <div class="w-50">
+      <textarea id="comentario" class="form-control comentario" rows="5"  maxlength="1000" [(ngModel)]="comentario"
+      ></textarea>
+      <!--<button class="buttonEmoji" (click)="mostrarEmoji = !mostrarEmoji">😀</button>-->
+      <span class="float-right" style="color: #FFFFFF;">{{comentario.length + '/' + longitud}}</span>
+      <br>
+      <button class="float-right botonComentar" (click)="mostrarEmoji = !mostrarEmoji">Comentar</button>
+    </div>
   </div>
-  <div class="mx-auto w-50">
-    <textarea id="comentario" rows="10" class="form-control"  maxlength="1000" [(ngModel)]="comentario"
-    >
-    </textarea>
-    <span class="float-right" style="color: #FFFFFF;">{{comentario.length + '/' + longitud}}</span>
-  </div>
-
 </div>

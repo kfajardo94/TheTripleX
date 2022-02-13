@@ -11,6 +11,8 @@
   "editar": "Edit",
   "ver": "View",
   "eliminar": "Delete",
+  "comentar": "Comment",
+  "descripcion.comentarios": "All comments",
 
   "titulo.categorias": "Categories",
   "titulo.categorias.crud": "Category",

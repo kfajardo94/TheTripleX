@@ -1,1 +1,13 @@
+--frame
 allow-same-origin y allow-scripts permiten que no redireccione a la página original
+
+
+--emojis
+npm i @ctrl/ngx-emoji-mart para emojis
+npm i @ctrl/ngx-emoji-mart@5.1.2
+version 5.1.2 con angular 11
+
+https://javascript.plainenglish.io/add-emoji-to-your-angular-application-c753e0d5cf84
+https://www.npmjs.com/package/@ctrl/ngx-emoji-mart
+
+no se implementará todavía el tema de emojis en los comentarios
