@@ -15,6 +15,8 @@ export class VideoComponent implements OnInit {
   sourceVideo: SafeResourceUrl;
   idVideo = 0;
   descripcion: string;
+  comentario: string;
+  longitud: string;
 
   constructor(private route: ActivatedRoute, private service: Services,
               private sanitizer: DomSanitizer) {
@@ -22,6 +24,8 @@ export class VideoComponent implements OnInit {
     this.idVideo = Number(this.route.snapshot.queryParamMap.get('id'));
     this.video = new Videos(0, '', '', '', '');
     this.descripcion = '';
+    this.comentario = '';
+    this.longitud = '';
   }
 
   ngOnInit(): void {
@@ -42,6 +46,17 @@ export class VideoComponent implements OnInit {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 
+    const obj =  document.getElementById('comentario') as HTMLTextAreaElement;
+
+    this.comentario = '';
+    this.longitud = String(obj.maxLength);
+
   }
+
+  playPause(event: any): void {
+
+    console.log('event: ', event);
+  }
+
 
 }

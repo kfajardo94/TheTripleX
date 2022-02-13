@@ -1,7 +1,14 @@
 <div class="divGeneral">
   <div class="divVideo">
-      <p class="titulo">{{descripcion}}</p>
-      <iframe
-        [src]="sourceVideo" class="iframe" frameborder=0></iframe>
+    <p class="titulo">{{descripcion}}</p>
+    <iframe (click)="playPause($event)"
+      [src]="sourceVideo" class="iframe" frameborder=0 sandbox="allow-same-origin allow-scripts"></iframe>
   </div>
+  <div class="mx-auto w-50">
+    <textarea id="comentario" rows="10" class="form-control"  maxlength="1000" [(ngModel)]="comentario"
+    >
+    </textarea>
+    <span class="float-right" style="color: #FFFFFF;">{{comentario.length + '/' + longitud}}</span>
+  </div>
+
 </div>
